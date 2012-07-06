@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="smartforest.Test1">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="32" width="679" height="510"/>
+    </constraints>
+    <properties>
+      <preferredSize width="1000" height="600"/>
+      <requestFocusEnabled value="true"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="a3ace" binding="Parameters" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="West"/>
+        <properties>
+          <preferredSize width="300" height="600"/>
+          <verifyInputWhenFocusTarget value="true"/>
+        </properties>
+        <border type="line" title="Parameters"/>
+        <children>
+          <grid id="4a462" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="Center"/>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+      <tabbedpane id="88bb4" binding="Accuracy">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="907bf" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Accuracy"/>
+            </constraints>
+            <properties/>
+            <border type="none" title="Accuracy"/>
+            <children/>
+          </grid>
+          <scrollpane id="2faa9" binding="Layout">
+            <constraints>
+              <tabbedpane title="Layout"/>
+            </constraints>
+            <properties/>
+            <border type="none" title="Layout"/>
+            <children/>
+          </scrollpane>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+</form>
