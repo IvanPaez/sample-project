@@ -65,6 +65,8 @@ public class EditorMouseMenu extends JPanel {
     private Set<String> mPred;
     private Set<String> mDataCollectors;
 
+
+    public List<GraphElements.MyVertex> sensors;
     //Properties
     private static JFrame frame = new JFrame("Smart Forest Use Case");
     private static SparseMultigraph<GraphElements.MyVertex, GraphElements.MyEdge> mGraph;
@@ -253,12 +255,9 @@ public class EditorMouseMenu extends JPanel {
 
     public static void getVertexCount(){
         int noDataCollectors = 0;
-     //   Array vector = new Vector();
 
-        Map<String, String> dataCollectors = new HashMap<String, String>();
-        java.util.List<String> dcList = new ArrayList<String>();
-        Map<String, Integer> distanceToDC = new HashMap<String, Integer>(); //of all nodes to the shortest Data Collector  (12 or 16)
-        Map<String, Integer> shortestPath = new HashMap<String, Integer>(); //short distance form any node to dataCollector        (node, shortestDistance)
+       java.util.List<String> dcList = new ArrayList<String>();
+        Map<String, Integer> distanceToDC = new HashMap<String, Integer>(); //Distance of any node to the closest Data Collector
 
         Map<String, Integer> powerConsumption = new HashMap<String, Integer>();
 
@@ -298,15 +297,15 @@ public class EditorMouseMenu extends JPanel {
                 nums[i] = dist.intValue();
             }
            // int min = getMinimum(shortestPath);
-            int min = getMinimo(nums);
+            int min = getMinimum(nums);
             distanceToDC.put(node.getName(), min);
            // shortestPath.clear();
         }
 
         System.out.println("4. Shortest distance to Data Collector");
-        for (String nodes : distanceToDC.keySet()) {
-            System.out.println("" +nodes+", distance="+distanceToDC.get(nodes));
-        }
+//        for (String nodes : distanceToDC.keySet()) {
+//            System.out.println("" +nodes+", distance="+distanceToDC.get(nodes));
+//        }
 
 
    //     System.out.println("powerFormattedTextField.getValue()="+powerFormattedTextField.getValue() );
@@ -347,20 +346,25 @@ public class EditorMouseMenu extends JPanel {
 
         showGraph(mapValues);
 
-                         /*
-        for (String keys : mapValues.keySet()) {
-            System.out.println("XXX - Node=" +keys);
-            Vector values = mapValues.get(keys);
-            for (int i=0; i < values.size(); i++) {
-                System.out.println("values["+i+"]=" +values.get(i));
-            }
-
-        }                         */
             System.out.println("5. Power consumption... after "+ numberOfIterations +" iterations");
             for (String power : powerConsumption.keySet()) {
                 System.out.println("" +power+", power="+powerConsumption.get(power));
             }
         }
+
+        System.out.println("6. Coverage Area");
+
+        CoverageArea ca =  new CoverageArea(mGraph);
+
+        ca.drawGrid();
+        ca.drawMaxRadius();
+        ca.getMaximumCoverage();
+
+        ca.drawRadius();
+        ca.getCoverage();
+        ca.getPercentageCoverage();
+        System.out.println("Percentage coverage="+ca.getPercentageCoverage());
+
 
     }
 
@@ -369,21 +373,14 @@ public class EditorMouseMenu extends JPanel {
 
      //   demo = new GraphChart("My First Chart");
         demo = new GraphChart("Smart Forest Use Case", mapValues);
-      //  CategoryDataset dataset = createDataset();
 
-//        CategoryDataset dataset = createDataset(values, name);
-//        JFreeChart chart = demo.createChart(dataset);
-//        ChartPanel chartPanel = new ChartPanel(chart);
-//        chartPanel.setPreferredSize(new Dimension(500, 270));
-//        frame.setContentPane(chartPanel);
-        //the other code in main
         demo.pack();
         RefineryUtilities.centerFrameOnScreen(demo);
         demo.setVisible(true);
 
     }
 
-    public static int getMinimo(int[] nums){
+    public static int getMinimum(int[] nums){
         int minimum = mGraph.getVertexCount();
         for (int i = 0; i < nums.length; i++){
 //            System.out.println(nodes.get(i).toString()+ " = "+nodes.get(i));
@@ -398,7 +395,7 @@ public class EditorMouseMenu extends JPanel {
     public static MyVertex getNode(String name){
         MyVertex v = new MyVertex();
         for(MyVertex node : mGraph.getVertices()){
-                 if(name  == node.getName()){
+                 if(node.getName().equals(name)){
                     v = node;
                  }
         }

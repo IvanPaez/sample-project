@@ -55,11 +55,11 @@ public class GraphChart extends ApplicationFrame {
      */
     public static CategoryDataset createDataset() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-       dataset.addValue(212, "Classes", "JDK 1.0");
-        dataset.addValue(504, "Classes", "JDK 1.1");
-        dataset.addValue(1520, "Classes", "SDK 1.2");
-        dataset.addValue(1842, "Classes", "SDK 1.3");
-        dataset.addValue(2991, "Classes", "SDK 1.4");
+//       dataset.addValue(212, "Classes", "JDK 1.0");
+//        dataset.addValue(504, "Classes", "JDK 1.1");
+//        dataset.addValue(1520, "Classes", "SDK 1.2");
+//        dataset.addValue(1842, "Classes", "SDK 1.3");
+//        dataset.addValue(2991, "Classes", "SDK 1.4");
         return dataset;
     }
 
@@ -68,10 +68,10 @@ public class GraphChart extends ApplicationFrame {
          //  System.out.println("BBBBiiiii");
 
         for (String keys : mapValues.keySet()) {
-            System.out.println("XXX - Node=" +keys);
+         //   System.out.println("XXX - Node=" +keys);
             Vector values = mapValues.get(keys);
             for (int i=0; i < values.size(); i++) {
-                System.out.println("values["+i+"]=" +values.get(i));
+          //      System.out.println("values["+i+"]=" +values.get(i));
                 dataset.addValue(Integer.parseInt(values.get(i).toString()), keys, String.valueOf(i));
 
             }
