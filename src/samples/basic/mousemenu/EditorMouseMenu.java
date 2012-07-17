@@ -360,6 +360,8 @@ public class EditorMouseMenu extends JPanel {
         ca.drawMaxRadius();
         ca.getMaximumCoverage();
 
+        ca.sortNodes();
+
         ca.drawRadius();
         ca.getCoverage();
         ca.getPercentageCoverage();

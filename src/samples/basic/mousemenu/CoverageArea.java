@@ -21,7 +21,8 @@ public class CoverageArea {
     private int numberOfSensorInALine = 2;
     private int distanceBetweenSensors = 4;
     private int totalSensors = 0;
- //   private ArrayList<GraphElements.MyVertex> arrayVertex;
+
+    private  List<String> sortNames = new ArrayList<String>();
     private Collection<GraphElements.MyVertex> collVertex;
 
     private static SparseMultigraph<GraphElements.MyVertex, GraphElements.MyEdge> mGraph;
@@ -111,6 +112,19 @@ public class CoverageArea {
         return maxCoverage;
     }
 
+    public void sortNodes(){
+        collVertex = mGraph.getVertices();
+
+        for(GraphElements.MyVertex node : mGraph.getVertices()){
+            sortNames.add(node.getName());
+
+        }
+        Collections.sort(sortNames);
+//        Iterator it = sortNames.iterator();
+//        while(it.hasNext()){
+//               System.out.println("Node="+it.next());
+//        }
+    }
 
     public void drawRadius(){
 
@@ -123,7 +137,8 @@ public class CoverageArea {
 
                 if(grid[i][j]== "X") {
                     //we found a sensor
-                    String nodeName = "Node"+numberOfDetectedSensors;
+                    //String nodeName = "Node"+numberOfDetectedSensors;
+                    String nodeName = sortNames.get(numberOfDetectedSensors);
                     verObj = getNode(nodeName);
 
                     //    System.out.println("BBB Name="+verObj.getName()+" Frequency="+verObj.getFrequency());
